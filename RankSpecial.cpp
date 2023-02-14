@@ -6,16 +6,22 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
     int n;
-    cin >> n;
     int a[1001];
-    int max = -1;
-    for (int i = 0; i < n; i++)
+    while (cin >> n)
     {
-        cin >> a[i];
-        if (a[i] > max)
+        for (int i = 0; i < n; i++)
         {
-            swap(a[i], max);
+            cin >> a[i];
         }
+        sort(a, a + n);
+        cout << a[n - 1] << endl;
+        for (int i = 0; i < n - 1; i++)
+        {
+            cout << a[i] << " ";
+        }
+        if (n == 1)
+            cout << "-1";
+        cout << endl;
     }
     return 0;
 }
