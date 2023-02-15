@@ -13,8 +13,7 @@ using namespace std;
 // 同时在运算数栈中弹出两个运算数进行运算，并将结果压入栈中
 // 遍历到运算数时，直接压入运算数栈
 // 若运算符栈中仅剩#和￥，则表达式运算结束，此时运算数栈中唯一的数字就是表达式的值
-stack<char> operation; // 运算符栈
-stack<int> num;        // 运算数栈
+
 int priority(char c)
 {
     if (c == '#')
@@ -41,15 +40,15 @@ double calculate(double x, double y, char op)
     {
         result = x + y;
     }
-    else if (op = '-')
+    else if (op == '-')
     {
         result = x - y;
     }
-    else if (op = '*')
+    else if (op == '*')
     {
         result = x * y;
     }
-    else
+    else if (op == '/')
     {
         result = x / y;
     }
@@ -71,9 +70,13 @@ int main(int argc, char const *argv[])
     while (getline(cin, s))
     {
         if (s == "0")
+        {
             break;
-        int i = 0; // 表示扫描表达式时的下标
-        s += '$';  // 字符串末尾增加一个字符标志
+        }
+        int i = 0;             // 表示扫描表达式时的下标
+        stack<char> operation; // 运算符栈
+        stack<double> num;     // 运算数栈
+        s += '$';              // 字符串末尾增加一个字符标志
         operation.push('#');
         while (i < s.size())
         {
@@ -87,7 +90,7 @@ int main(int argc, char const *argv[])
                 num.push(getnum(s, i));
             }
             else
-            { // 扫描到的是字符
+            { // 扫描到的是字符,且比栈顶的优先级高
                 if (priority(s[i]) > priority(operation.top()))
                 {
                     operation.push(s[i]); // 扫描到的字符优先级高，压入栈中
@@ -105,7 +108,8 @@ int main(int argc, char const *argv[])
                 }
             }
         }
-        printf("%.2d\n", num.top());
+        // cout << num.top() << endl;
+        printf("%.2f\n", num.top());
     }
     return 0;
 }
