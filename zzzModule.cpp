@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdio>
-#include <algorithm>
+
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -9,7 +9,6 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-#include <stack>
 #include <math.h>
 #include <algorithm>
 #include <vector>
@@ -20,6 +19,7 @@ int main(int argc, char const *argv[])
 #include <queue>
 #include <stack>
 #include <cctype>
+#include <ctype.h> //用于判断单个字符类型
 class Solution
 {
 public:
