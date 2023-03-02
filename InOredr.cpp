@@ -94,23 +94,29 @@ void InOrder(TreeNode *root)
         return;
     }
     InOrder(root->leftChild);
-    printf("%c", root->data);
+    printf("%c ", root->data);
     InOrder(root->rightChild);
 }
 int main(int argc, char const *argv[])
 {
     TreeNode *root = NULL; // 根节点
-
-    char charList[] = "abc##de#g##f###";
-    queue<QueueNode> myQueue; // 队列的每个元素存储了新结点的父亲的位置，以及是否有左孩子
-    // 定义队列的类型是QueueNode（自己定义的结构体），名字叫myQueue
-    for (int i = 0; charList[i] != '\0'; i++)
-    // for中间的这个是判断语句
+    char charList[101];
+    // string charlist;
+    // 字符串既可以用string 来遍历 for(auto i:s);也可以用数组来遍历
+    // 同理数组也可以用%s传进去
+    while (scanf("%s", charList) != EOF)
     {
-        // printf("%d\n", i);
-        insertTreeNode(root, myQueue, charList[i]);
+        queue<QueueNode> myQueue; // 队列的每个元素存储了新结点的父亲的位置，以及是否有左孩子
+        // 定义队列的类型是QueueNode（自己定义的结构体），名字叫myQueue
+        for (int i = 0; charList[i] != '\0'; i++)
+        // for中间的这个是判断语句
+        {
+            // printf("%d\n", i);
+            insertTreeNode(root, myQueue, charList[i]);
+        }
+        InOrder(root);
+        printf("\n");
     }
-    InOrder(root);
-    printf("\n");
     return 0;
 }
+// 假设传进去的例子：abc##de#g##f###
